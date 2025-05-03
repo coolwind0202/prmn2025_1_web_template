@@ -1,19 +1,12 @@
 from flask import Flask
 
+from src import config
+
 app = Flask(__name__)
 
-# PostgreSQLを使用する場合には、コメントアウトを外してください。
-# from sqlalchemy.orm import DeclarativeBase
-# from flask_sqlalchemy import SQLAlchemy
-# 
-# class Base(DeclarativeBase):
-#   pass
-# 
-# db = SQLAlchemy(model_class=Base)
-# POSTGRES_USER = "postgres"
-# POSTGRES_PASSWORD = "postgres"
-# app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}"
-# db.init_app(app)
+# config.pyに定義されている、SQLAlchemyの初期化処理を呼び出す。
+config.init_sql_alchemy(app)
+
 
 @app.route("/")
 def hello_world():
